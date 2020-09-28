@@ -17,15 +17,16 @@ void addRandomIntegerToVectorAndPrintToConsole();
 void initGameLoop();
 void checkUserInputForErrors();
 
+// Not cross-platform. But that's not my problem :)
 void clear()
 {
-	// CSI[2J clears screen, CSI[H moves the cursor to top-left corner
-	std::cout << "\x1B[2J\x1B[H";
+	system("cls");
 }
 
 void getUserInput()
 {
 	clear();
+	inputInts.clear();
 
 	std::cout << "Your time to shine!" << std::endl;
 	std::cout << "Enter the previously shown sequence of integers:" << std::endl;
@@ -36,10 +37,9 @@ void getUserInput()
 		int input;
 		std::cin >> input;
 		inputInts.push_back(input);
-		std::cout << "\n";
 	}
 
-	// check if list is correct
+	std::cout << "Press ENTER to continue...\n" << std::cin.get();
 	checkUserInputForErrors();
 }
 
@@ -47,7 +47,7 @@ void addRandomIntegerToVectorAndPrintToConsole()
 {
 	clear();
 
-	int randInt = std::rand() % 100;
+	int randInt = std::rand() % 10;
 	randomizedInts.push_back(randInt);
 
 	std::cout << "Simon Says:" << std::endl;
@@ -56,7 +56,7 @@ void addRandomIntegerToVectorAndPrintToConsole()
 		std::cout << randomizedInts[i] << ", " << std::endl;
 	}
 
-	std::cout << "Press ENTER to continue." << std::cin.get();
+	std::cout << "Press ENTER to continue...\n" << std::cin.get();
 	getUserInput();
 }
 
@@ -67,7 +67,7 @@ void initGameLoop()
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		int randInt = std::rand() % 100;
+		int randInt = std::rand() % 10;
 		randomizedInts.push_back(randInt);
 	}
 
@@ -77,7 +77,7 @@ void initGameLoop()
 		std::cout << randomizedInts[i] << ", " << std::endl;
 	}
 
-	std::cout << "Press ENTER to continue." << std::cin.get();
+	std::cout << "Press ENTER to continue...\n" << std::cin.get();
 	getUserInput();
 }
 
@@ -87,14 +87,15 @@ void checkUserInputForErrors()
 
 	for (size_t i = 0; i < randomizedInts.size(); i++)
 	{
-		if (inputInts[i] != randomizedInts[i])
+		if (randomizedInts[i] != inputInts[i])
 		{
 			clear();
 			std::cout << "GAME OVER" << std::endl;
-			std::cout << "Press ENTER to continue..." << std::cin.get();
+			std::cout << "Press ENTER to continue...\n" << std::cin.get();
 			std::exit(0);
 		}
 	}
+
 	addRandomIntegerToVectorAndPrintToConsole();
 }
 
