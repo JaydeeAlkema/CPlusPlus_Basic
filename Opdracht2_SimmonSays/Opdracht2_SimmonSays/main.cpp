@@ -14,7 +14,7 @@ std::vector<int> inputInts;
 void clear();
 void getUserInput();
 void addRandomIntegerToVectorAndPrintToConsole();
-void initRandomIntegers();
+void initGameLoop();
 void checkUserInputForErrors();
 
 void clear()
@@ -61,7 +61,7 @@ void addRandomIntegerToVectorAndPrintToConsole()
 }
 
 // Initialize the random integers vector and display it to the user.
-void initRandomIntegers()
+void initGameLoop()
 {
 	clear();
 
@@ -101,7 +101,7 @@ void checkUserInputForErrors()
 int main()
 {
 	srand(time(NULL));
-	initRandomIntegers();
+	initGameLoop();
 
 	return 0;
 }
