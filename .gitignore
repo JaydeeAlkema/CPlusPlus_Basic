@@ -132,6 +132,7 @@ StyleCopReport.xml
 *.sln
 *.filters
 *.user
+*.vcxproj
 
 # Chutzpah Test files
 _Chutzpah*
